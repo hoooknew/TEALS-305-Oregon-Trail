@@ -113,6 +113,8 @@ def take_action(action):
 
 ##########  MAIN FUNCTION  ##########
 
+player_name = input("What is the player's name? ")
+
 days_total = days_between(START_DATE, END_DATE)
 days_from_start = 0
 
@@ -122,8 +124,6 @@ miles_traveled = 0
 lbs_of_food = 500
 
 player_health = 5
-
-player_name = input("What is the player's name? ")
 
 while (
         (miles_total > miles_traveled) and 
