@@ -1,34 +1,19 @@
+This is a solution for the [TEALS 3.05 lab](https://tealsk12.github.io/2nd-semester-introduction-to-computer-science/units/3_unit/05_lesson/project.md.html).
+
+I have also broken down the original task into smaller milestones to help the students focus their efforts on smaller goals.
+
+# Project 3: Oregon Trail
+
 Using variables, functions, and conditionals in Python, students will create an Oregon Trail game.
 
 ## Overview
 We will be recreating Oregon Trail! The goal is to travel from Independence, Missouri to Oregon City, Oregon (2000 miles) by Dec 31st. However, the trail is arduous. Each day costs you food. You can hunt and rest, but you have to get there before winter!
 
 ## Details
-
-### Behavior
-- [x] Player starts in Independence, Missouri on 03/01 with 2,000 miles to go, 500lbs of food, and 5 health.
-- [x] The player must get to Oregon by 12/31.
-- [x] At the beginning of the game, user is asked their name.
-- [x] Each turn, the player is asked what action they choose, where the player can type in the following: travel, rest, hunt, status, help, quit
-- [x] The player's health will decrease twice each month.
-- [x] The player eats 5lbs of food a day.
-- [x] travel: moves you randomly between 30-60 miles and takes 3-7 days (random).
-- rest: increases health 1 level (up to 5 maximum) and takes 2-5 days (random).
-- [x] hunt: adds 100lbs of food and takes 2-5 days (random).
-- [x] status: lists food, health, distance traveled, and day.
-- [x] help: lists all the commands.
-- [x] quit: will end the game.
   
-### Implementation details
-- Create functions for all options a player can take
-- Use global variables to keep track of player health, food pounds, miles to go, current day, current month
-- Create a function add_day which updates the day
-- Use a list to keep track of which months have 31 days and use this in the add_day function (i.e.: - MONTHS_WITH_31_DAYS = [1, 3, 5, 7, 8, 10, 12])
-- Create a select_action function that uses a while loop to call the add_day function
-- Game ends if days run out, health runs out, the player reaches Oregon, or the player quits.
+### Phases
 
-
-### Traveling, Status, and Help
+#### Traveling, Status, and Help
 - Ask for the player's name
 - Player starts in Independence, Missouri on 03/01 with 2,000 miles to go.
 - Each turn, the player is asked what action they choose, where the player can type in the following: **travel**, **status**, **help**, **quit**
@@ -38,7 +23,7 @@ We will be recreating Oregon Trail! The goal is to travel from Independence, Mis
 - quit: will end the game.
 - The player must get to Oregon by 12/31. Let the player know if they have won or lost.
 
-### Eating and Hunting
+#### Eating and Hunting
 - Player has 500lbs of food.
 - The player eats 5lbs of food a day.
 - Each turn, the player is asked what action they choose, where the player can type in the following: "travel", and **"hunt"**
@@ -47,12 +32,20 @@ We will be recreating Oregon Trail! The goal is to travel from Independence, Mis
 - status: lists **food**, distance traveled, and day.
 - help: lists **hunt**.
 
-### Resting
+#### Resting
 - The Player has 5 health.
 - The player's health will decrease twice each month.
 - status: lists food, **health**, distance traveled, and day.
 - rest: increases health 1 level (up to 5 maximum) and takes 2-5 days (random).
 - help: lists **rest**.
+
+### Implementation details
+- Create functions for all options a player can take
+- Use global variables to keep track of player health, food pounds, miles to go, current day, current month
+- Create a function add_day which updates the day
+- Use a list to keep track of which months have 31 days and use this in the add_day function (i.e.: - MONTHS_WITH_31_DAYS = [1, 3, 5, 7, 8, 10, 12]) **OR** use the date functions provided in the starter code.
+- Create a select_action function that uses a while loop to call the add_day function
+- Game ends if days run out, health runs out, the player reaches Oregon, or the player quits.
 
 ## Bonus
 1. Make the rate of food consumption be a function of activity. If a player hunts for a turn they take up more food, but if they rest they take up less food.
