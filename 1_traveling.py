@@ -1,6 +1,8 @@
 import datetime # https://docs.python.org/3/library/datetime.html#date-objects
 import random # https://docs.python.org/3/library/random.html
 
+##########  DATE STUFF  ##########
+
 START_DATE = datetime.date(2022, 3, 1)
 END_DATE = datetime.date(2022, 12, 31)
 
@@ -14,6 +16,11 @@ def get_current_date_str():
     curr_date = get_current_date()
     return curr_date.strftime("%m/%d")
 
+def get_current_day_of_month():
+    return get_current_date().day
+
+##########  TEXT STYLING  ##########
+
 def bold(text):
     return '\N{ESC}[1m' + text + '\N{ESC}[0m'
 
@@ -25,6 +32,8 @@ def red(text):
 
 def yellow(text):
     return '\N{ESC}[33m' + text + '\N{ESC}[0m'
+
+##########  ACTIONS  ##########
 
 def travel():
     global miles_traveled 
@@ -51,6 +60,7 @@ def take_action(action):
     else:
         print('You can type "travel", "status", "help", or "quit".')
 
+##########  MAIN FUNCTION  ##########
 
 player_name = input("What is the player's name? ")
 

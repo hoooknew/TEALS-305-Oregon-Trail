@@ -27,11 +27,6 @@ We will be recreating Oregon Trail! The goal is to travel from Independence, Mis
 - Create a select_action function that uses a while loop to call the add_day function
 - Game ends if days run out, health runs out, the player reaches Oregon, or the player quits.
 
-## Bonus
-1. Make the rate of food consumption be a function of activity. If a player hunts for a turn they take up more food, but if they rest they take up less food.
-2. Create a random event that occurs randomly once a month, like a river crossing or a dysentery, that will take up a range of 1-10 food, 1-10 days and 0-1 health.
-3. Create a range of miles corresponding to high altitudes in the Rocky Mountains, where there is an increased chance of slow travel due to snow after November 1st.
-
 
 ## Milestones
 
@@ -53,8 +48,16 @@ We will be recreating Oregon Trail! The goal is to travel from Independence, Mis
 - hunt: adds 100lbs of food and takes 2-5 days (random).
 - If the player runs out of food, they die.
 - status: lists **food**, distance traveled, and day.
+- help: lists **hunt**.
 
 ### Resting
 - The Player has 5 health.
 - The player's health will decrease twice each month.
 - status: lists food, **health**, distance traveled, and day.
+- rest: increases health 1 level (up to 5 maximum) and takes 2-5 days (random).
+- help: lists **rest**.
+
+## Bonus
+1. Make the rate of food consumption be a function of activity. If a player hunts for a turn they take up more food, but if they rest they take up less food.
+2. Create a random event that occurs randomly once a month, like a river crossing or a dysentery, that will take up a range of 1-10 food, 1-10 days and 0-1 health.
+3. Create a range of miles corresponding to high altitudes in the Rocky Mountains, where there is an increased chance of slow travel due to snow after November 1st.

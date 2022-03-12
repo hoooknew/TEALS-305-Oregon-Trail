@@ -1,8 +1,25 @@
 import datetime # https://docs.python.org/3/library/datetime.html#date-objects
 import random # https://docs.python.org/3/library/random.html
 
+##########  DATE STUFF  ##########
+
 START_DATE = datetime.date(2022, 3, 1)
 END_DATE = datetime.date(2022, 12, 31)
+
+def days_between(start_date : datetime.date, end_date: datetime.date):
+    return (end_date - start_date).days
+
+def get_current_date():
+    return START_DATE + datetime.timedelta(days=days_from_start)
+
+def get_current_date_str():
+    curr_date = get_current_date()
+    return curr_date.strftime("%m/%d")
+
+def get_current_day_of_month():
+    return get_current_date().day
+
+##########  TEXT STYLING  ##########
 
 def bold(text):
     return '\N{ESC}[1m' + text + '\N{ESC}[0m'
@@ -16,15 +33,7 @@ def red(text):
 def yellow(text):
     return '\N{ESC}[33m' + text + '\N{ESC}[0m'
 
-def days_between(start_date : datetime.date, end_date: datetime.date):
-    return (end_date - start_date).days
-
-def get_current_date():
-    return START_DATE + datetime.timedelta(days=days_from_start)
-
-def get_current_date_str():
-    curr_date = get_current_date()
-    return curr_date.strftime("%m/%d")
+##########  ACTIONS  ##########
 
 def travel():
     global miles_traveled     
@@ -75,6 +84,7 @@ def take_action(action):
     else:
         print('You can type "travel", "hunt", "status", "help", or "quit".')
 
+##########  MAIN FUNCTION  ##########
 
 player_name = input("What is the player's name? ")
 
