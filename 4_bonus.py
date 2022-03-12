@@ -6,6 +6,8 @@ import random # https://docs.python.org/3/library/random.html
 START_DATE = datetime.date(2022, 3, 1)
 END_DATE = datetime.date(2022, 12, 31)
 
+MONTHS_WITH_31_DAYS = [1, 3, 5, 7, 8, 10, 12]
+
 def days_between(start_date : datetime.date, end_date: datetime.date):
     return (end_date - start_date).days
 
@@ -43,6 +45,7 @@ def travel():
     miles_traveled = miles_traveled + miles_this_trip
     
     days_this_trip = take_time(3, 7)
+    eat_food(days_this_trip, 5)
 
     print ("You traveled " + str(miles_this_trip) + " miles over " + str(days_this_trip) +" days.")
 
@@ -50,7 +53,9 @@ def hunt():
     global lbs_of_food
 
     lbs_of_food = lbs_of_food + 100
+
     days_this_hunt = take_time(2, 5)
+    eat_food(days_this_hunt, 6)
 
     print ("You hunted 100 pounds of food over " + str(days_this_hunt) +" days.")
 
@@ -58,6 +63,7 @@ def rest():
     global player_health
 
     days_this_rest = take_time(2, 5)
+    eat_food(days_this_rest, 3)
 
     if player_health == 5:        
         print("Your health stayed at " + bold(str(player_health)) + " health while resting for " + bold(str(days_this_rest)) + " days.")
@@ -81,17 +87,23 @@ def take_time(min_days : int, max_days: int):
 
     if 30 > starting_day_of_month and 30 <= starting_day_of_month + days_passed:
         player_health = player_health - 1
-        print(red("Your health decreased by 1"))
-
-    food_eaten = days_passed * 5
-    lbs_of_food = lbs_of_food - food_eaten
-    print ("You ate "+str(food_eaten)+" pounds of food over " + str(days_passed) +" days.")
-    if lbs_of_food < 100:
-        print (red("You have " + str(lbs_of_food) + " pounds of food left."))
-    else:
-        print ("You have " + str(lbs_of_food) + " pounds of food left.")
+        print(red("Your health decreased by 1"))    
 
     return days_passed
+
+def eat_food(days_passed, food_per_day):
+    if lbs_of_food > 0:
+        food_eaten = days_passed * 5
+        lbs_of_food = lbs_of_food - food_eaten
+        print ("You ate "+str(food_eaten)+" pounds of food over " + str(days_passed) +" days.")
+        if lbs_of_food < 100:
+            print (red("You have " + str(lbs_of_food) + " pounds of food left."))
+        else:
+            print ("You have " + str(lbs_of_food) + " pounds of food left.")
+
+    if lbs_of_food < 0:
+        player_health = player_health - 1
+        print(red("Your starving and your health decreased by 1"))
 
 def take_action(action):
     if action == "travel":
@@ -127,8 +139,7 @@ player_health = 5
 
 while (
         (miles_total > miles_traveled) and 
-        (days_total > days_from_start) and
-        lbs_of_food >= 0 and
+        (days_total > days_from_start) and        
         player_health > 0
     ):
     action = input(bold("\n" + player_name + ", what would you like to do? "))
@@ -140,5 +151,3 @@ elif(days_total < days_from_start):
     print(bold(red("You didn't make it by 12/31 and froze to death in the cold winter...")))
 elif(player_health <= 0):
     print(bold(red("You died from overexertion...")))
-elif(lbs_of_food < 0):
-    print(bold(red("You starved...")))
