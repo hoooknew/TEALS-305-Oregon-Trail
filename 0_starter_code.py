@@ -24,6 +24,8 @@ def get_current_date_str():
 
 ##########  TEXT STYLING  ##########
 
+# https://chrisyeh96.github.io/2020/03/28/terminal-colors.html
+
 def bold(text):
     return '\N{ESC}[1m' + text + '\N{ESC}[0m'
 
