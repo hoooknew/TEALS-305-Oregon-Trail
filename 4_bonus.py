@@ -65,9 +65,19 @@ def yellow(text):
 def travel():
     global miles_traveled     
 
-    # add between 30 and 60 miles
-    miles_this_trip = random.randrange(30, 61)
-    miles_traveled = miles_traveled + miles_this_trip
+    if (
+        month_cal[days_from_start] >= 11 and 
+        miles_traveled >= 1500 and 
+        random.randrange(1, 11) == 1
+    ):
+        print(blue("You got caught in a blizzard in the Sierra Nevadas... 🥶 The distance you traveled is halfed."))
+        # add between 15 and 30 miles
+        miles_this_trip = random.randrange(15, 31)
+        miles_traveled = miles_traveled + miles_this_trip
+    else:
+        # add between 30 and 60 miles
+        miles_this_trip = random.randrange(30, 61)
+        miles_traveled = miles_traveled + miles_this_trip
     
     days_this_trip = take_time(3, 7)
     eat_food(days_this_trip, 5)
