@@ -44,7 +44,7 @@ def travel():
     global miles_traveled     
 
     # add between 30 and 60 miles
-    miles_this_trip = (30 + random.randrange(0, 31))
+    miles_this_trip = random.randrange(30, 61)
     miles_traveled = miles_traveled + miles_this_trip
     
     days_this_trip = take_time(3, 7)
@@ -79,7 +79,7 @@ def take_time(min_days : int, max_days: int):
     global lbs_of_food
     global player_health
     
-    days_passed = random.randrange(min_days, (max_days - min_days) + 1)
+    days_passed = random.randrange(min_days, max_days + 1)
     for d in range(0, days_passed):        
         days_from_start = days_from_start + 1
         if day_cal[days_from_start] == 15 or day_cal[days_from_start] == 30:
