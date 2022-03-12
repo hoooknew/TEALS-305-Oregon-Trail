@@ -44,7 +44,7 @@ def travel():
     global miles_traveled     
 
     # add between 30 and 60 miles
-    miles_this_trip = (30 + random.randrange(0, 31))
+    miles_this_trip = random.randrange(30, 61)
     miles_traveled = miles_traveled + miles_this_trip
     
     days_this_trip = take_time(3, 7)
