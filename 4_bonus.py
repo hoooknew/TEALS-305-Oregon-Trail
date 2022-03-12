@@ -1,25 +1,28 @@
-import datetime # https://docs.python.org/3/library/datetime.html#date-objects
 import random # https://docs.python.org/3/library/random.html
 
 ##########  DATE STUFF  ##########
 
-START_DATE = datetime.date(2022, 3, 1)
-END_DATE = datetime.date(2022, 12, 31)
+# the first item is set to None intentionally so the array index will be the month number.
+DAYS_IN_EACH_MONTH = [None, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
-MONTHS_WITH_31_DAYS = [1, 3, 5, 7, 8, 10, 12]
+# starts 3/1 and ends 12/31
+def make_month_calendar(): 
+    month_calendar = []
+    for m in range(3, len(DAYS_IN_EACH_MONTH)):
+        for d in range(1, DAYS_IN_EACH_MONTH[m] + 1):
+            month_calendar.append(m)
+    return month_calendar
 
-def days_between(start_date : datetime.date, end_date: datetime.date):
-    return (end_date - start_date).days
+# starts 3/1 and ends 12/31
+def make_day_calendar():
+    day_calendar = []
+    for m in range(3, len(DAYS_IN_EACH_MONTH)):
+        for d in range(1, DAYS_IN_EACH_MONTH[m] + 1):
+            day_calendar.append(d)
+    return day_calendar
 
-def get_current_date():
-    return START_DATE + datetime.timedelta(days=days_from_start)
-
-def get_current_date_str():
-    curr_date = get_current_date()
-    return curr_date.strftime("%m/%d")
-
-def get_current_day_of_month():
-    return get_current_date().day
+def get_current_date_str():    
+    return str(month_cal[days_from_start]) + "/" + str(day_cal[days_from_start])
 
 ##########  TEXT STYLING  ##########
 
@@ -75,23 +78,18 @@ def take_time(min_days : int, max_days: int):
     global days_from_start
     global lbs_of_food
     global player_health
-
-    starting_day_of_month = get_current_day_of_month()
-
-    days_passed = (min_days + random.randrange(0, (max_days - min_days) + 1))
-    days_from_start = days_from_start + days_passed
-
-    if 15 > starting_day_of_month and 15 <= starting_day_of_month + days_passed:
-        player_health = player_health - 1
-        print(red("Your health decreased by 1"))
-
-    if 30 > starting_day_of_month and 30 <= starting_day_of_month + days_passed:
-        player_health = player_health - 1
-        print(red("Your health decreased by 1"))    
+    
+    days_passed = random.randrange(min_days, (max_days - min_days) + 1)
+    for d in range(0, days_passed):        
+        days_from_start = days_from_start + 1
+        if day_cal[days_from_start] == 15 or day_cal[days_from_start] == 30:
+            player_health = player_health - 1
+            print(red("Your health decreased by 1"))    
 
     return days_passed
 
 def eat_food(days_passed, food_per_day):
+    global lbs_of_food
     if lbs_of_food > 0:
         food_eaten = days_passed * 5
         lbs_of_food = lbs_of_food - food_eaten
@@ -103,7 +101,7 @@ def eat_food(days_passed, food_per_day):
 
     if lbs_of_food < 0:
         player_health = player_health - 1
-        print(red("Your starving and your health decreased by 1"))
+        print(red("You're starving and your health decreased by 1"))
 
 def take_action(action):
     if action == "travel":
@@ -127,7 +125,10 @@ def take_action(action):
 
 player_name = input("What is the player's name? ")
 
-days_total = days_between(START_DATE, END_DATE)
+month_cal = make_month_calendar()
+day_cal = make_day_calendar()
+
+days_total = len(day_cal) - 1
 days_from_start = 0
 
 miles_total = 2000
@@ -136,6 +137,7 @@ miles_traveled = 0
 lbs_of_food = 500
 
 player_health = 5
+
 
 while (
         (miles_total > miles_traveled) and 
