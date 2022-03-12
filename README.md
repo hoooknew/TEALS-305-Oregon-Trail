@@ -28,8 +28,6 @@ We will be recreating Oregon Trail! The goal is to travel from Independence, Mis
 - Game ends if days run out, health runs out, the player reaches Oregon, or the player quits.
 
 
-## Milestones
-
 ### Traveling, Status, and Help
 - Ask for the player's name
 - Player starts in Independence, Missouri on 03/01 with 2,000 miles to go.
@@ -39,7 +37,6 @@ We will be recreating Oregon Trail! The goal is to travel from Independence, Mis
 - help: lists all the commands.
 - quit: will end the game.
 - The player must get to Oregon by 12/31. Let the player know if they have won or lost.
-
 
 ### Eating and Hunting
 - Player has 500lbs of food.
